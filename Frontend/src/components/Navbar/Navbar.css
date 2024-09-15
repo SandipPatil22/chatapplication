@@ -1,0 +1,53 @@
+/* src/components/Navbar.css */
+.chat-navbar {
+  padding: 10px;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.profile-pic {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.profile-name {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.nav-link {
+  margin-left: 15px;
+  color: #000;
+}
+
+.nav-link:hover {
+  color: #007bff;
+}
+
+/* ======= */
+/* .back-arrow-icon {
+  display: none;
+} */
+/* Mobile Styles */
+@media only screen and (max-width: 768px) {
+  .back-arrow-icon {
+    display: block;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+  .profile-name {
+    font-size: 1rem;
+  }
+  .chat-navbar {
+    margin-right: 50px;
+  }
+  .ml-auto {
+    margin-left: auto !important;
+  }
+}
+/* Tablet and larger screens (769px and above) */
+@media only screen and (min-width: 769px) {
+  .back-arrow {
+    display: none;
+  }
+}

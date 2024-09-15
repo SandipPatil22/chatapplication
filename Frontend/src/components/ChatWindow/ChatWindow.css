@@ -1,0 +1,363 @@
+/* src/components/ChatWindow.css */
+.chat-window {
+  display: flex;
+  flex-direction: column;
+  height: 85%;
+  background-color: #f8f9fa;
+  padding: 10px;
+  flex: 1;
+}
+
+.message-list {
+  flex-grow: 1;
+  padding: 15px;
+  overflow-y: auto;
+  border-bottom: 1px solid #dee2e6;
+  display: flex;
+  flex-direction: column;
+}
+
+.typing-area {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: #fff;
+  border-top: 1px solid #dee2e6;
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}
+
+.message-input {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #dee2e6;
+  border-radius: 20px;
+  margin-right: 10px;
+}
+
+.no-messages {
+  text-align: center;
+  color: #888;
+  margin-top: 20px;
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.icon {
+  font-size: 1.5rem;
+  color: #6c757d;
+}
+
+.icon-button:hover .icon {
+  color: #007bff;
+}
+
+.message {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 15px;
+  max-width: 60%;
+  word-wrap: break-word;
+}
+
+/* Sender's messages on the right */
+.message.sent {
+  align-self: flex-end;
+  background-color: #007bff;
+  color: white;
+}
+
+/* Received messages on the left */
+.message.received {
+  align-self: flex-start;
+  background-color: #e1e1e1;
+  color: black;
+}
+
+/* Common styling for both sent and received images */
+.message-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-top: 5px;
+  border: 2px solid #dee2e6;
+}
+
+/* Sent images - aligned to the right */
+.message.sent .message-content {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.message.sent .message-content img {
+  max-width: 220px; /* Adjust this value to control the image size */
+  border-color: #007bff; /* Optional: Add a specific border color for sent images */
+}
+.message.sent .message-content .popup img {
+  width: 320px; /* Adjust this value to control the image size */
+  border-color: #007bff; /* Optional: Add a specific border color for sent images */
+}
+
+/* Received images - aligned to the left */
+.message.received .message-content {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.message.received .message-content img {
+  max-width: 220px; /* Adjust this value to control the image size */
+}
+
+.message.received .message-content .popup img {
+  width: 320px; /* Adjust this value to control the image size */
+}
+
+/* ================ */
+/* Mobile Styles */
+@media only screen and (max-width: 769px) {
+  .chat-window {
+    display: none;
+  }
+
+  .chat-open .chat-window {
+    display: block;
+  }
+
+  .message-list {
+    margin-right: 26px;
+    height: 85%;
+  }
+
+  /*
+.message-input {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #dee2e6;
+  border-radius: 20px;
+  margin-right: 10px;
+}*/
+
+  .typing-area {
+    bottom: 30px;
+    margin-right: 35px;
+  }
+}
+@media only screen and (max-width: 426px) {
+  .chat-window {
+    display: none;
+  }
+
+  .chat-open .chat-window {
+    display: block;
+  }
+
+  .message-list {
+    margin-right: 26px;
+  }
+  /*
+.message-input {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #dee2e6;
+  border-radius: 20px;
+  margin-right: 10px;
+}*/
+
+  .typing-area {
+    bottom: 8px;
+  }
+
+  .message.sent .message-content img {
+    max-width: 200px; /* Adjust this value to control the image size */
+    border-color: #007bff; /* Optional: Add a specific border color for sent images */
+  }
+  .message.sent .message-content .popup img {
+    width: 600px; /* Adjust this value to control the image size */
+    border-color: #007bff; /* Optional: Add a specific border color for sent images */
+  }
+}
+
+/* ------------------------------------------one time image ------ */
+/* Add these styles to your MessageList.css */
+.eye-icon {
+  cursor: pointer;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-size: 24px; /* Adjust size as needed */
+  color: white; /* Adjust color as needed */
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw; /* Use full viewport width */
+  height: 100vh; /* Use full viewport height */
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  overflow: hidden; /* Prevent scrolling within the popup */
+}
+
+.popup img {
+  min-width: 84vw;
+  min-height: 57vh;
+  object-fit: contain; /* Scale image proportionally */
+}
+
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 30px; /* Adjust size as needed */
+  color: white;
+  cursor: pointer;
+  z-index: 1010; /* Ensure the close button is above the popup content */
+}
+
+/* capture image  */
+
+.fullscreen-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  flex-direction: column;
+}
+
+.capture-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 90%;
+  max-width: 600px;
+}
+
+.video-stream {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: black;
+}
+
+.fullscreen-image {
+  max-width: 100%;
+  max-height: 80vh; /* Ensure the image doesn't overflow the screen height */
+  width: auto;
+  height: auto;
+  border-radius: 10px;
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 24px;
+  padding: 10px;
+}
+
+.capture-icon {
+  position: absolute;
+  bottom: 20px;
+  font-size: 36px;
+  color: white;
+}
+
+.capture-button {
+  position: absolute;
+  bottom: 20px;
+  font-size: 36px;
+  color: white;
+  background: rgba(0, 0, 0, 0.6);
+  border: none;
+  border-radius: 50%;
+  padding: 10px;
+  cursor: pointer;
+}
+.options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+}
+
+.send-button {
+  font-size: 36px;
+  background: rgba(0, 0, 0, 0.6);
+  border: none;
+  border-radius: 50%;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  color: white;
+}
+
+.checkbox-container input {
+  display: none;
+}
+
+.checkbox-container .checkmark {
+  width: 24px;
+  height: 24px;
+  background-color: transparent;
+  border: 2px solid white;
+  border-radius: 4px;
+  margin-right: 10px;
+  position: relative;
+  cursor: pointer;
+}
+
+.checkbox-container input:checked + .checkmark {
+  background-color: white;
+}
+
+.checkbox-container input:checked + .checkmark::after {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 3px;
+  width: 6px;
+  height: 12px;
+  border: solid black;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 28px;
+  color: white;
+
+  padding: 10px;
+  cursor: pointer;
+}
